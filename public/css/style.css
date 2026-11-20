@@ -381,3 +381,351 @@ a {
         font-size: 13px;
     }
 }
+/* Keranjang dan checkout */
+.cart-layout,
+.checkout-layout,
+.order-detail-layout {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.cart-image,
+.cart-placeholder {
+    width: 115px;
+    height: 105px;
+    border-radius: 9px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.cart-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    background: #e9eee7;
+}
+
+.cart-detail {
+    flex: 1;
+}
+
+.cart-detail h3 {
+    color: #244c3c;
+}
+
+.cart-detail small,
+.cart-item-total small {
+    color: #89928b;
+}
+
+.cart-item-total {
+    text-align: right;
+}
+
+.cart-actions,
+.quantity-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-form input {
+    width: 65px;
+    padding: 7px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cart-actions form {
+    margin: 0;
+}
+
+.cart-summary,
+.checkout-card,
+.order-card {
+    background: white;
+    padding: 23px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #00000008;
+}
+
+.cart-summary h3,
+.checkout-card h3 {
+    color: #244c3c;
+    margin-bottom: 20px;
+}
+
+.summary-row,
+.summary-total,
+.summary-product {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #edf0ec;
+    font-size: 14px;
+}
+
+.summary-row span {
+    color: #778078;
+}
+
+.summary-total {
+    padding: 18px 0;
+    margin-bottom: 15px;
+    border-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #244c3c;
+}
+
+.checkout-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.continue-link {
+    display: block;
+    text-align: center;
+    color: #315c42;
+    font-size: 13px;
+    margin-top: 16px;
+}
+
+.alert-success,
+.alert-error {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.alert-success {
+    background: #e4f5e9;
+    color: #247343;
+}
+
+.alert-error {
+    background: #fce8e6;
+    color: #a43f39;
+}
+
+.checkout-layout {
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-form .checkout-card {
+    padding: 25px;
+}
+
+.checkout-summary {
+    position: sticky;
+    top: 95px;
+}
+
+.summary-product {
+    align-items: center;
+}
+
+.summary-product small {
+    display: block;
+    color: #89928b;
+    margin-top: 4px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f5f7f3;
+    border-radius: 8px;
+}
+
+.payment-option > span {
+    font-size: 28px;
+}
+
+.payment-option p {
+    font-size: 13px;
+    color: #778078;
+}
+
+.payment-title {
+    margin-top: 25px;
+}
+
+.payment-notice {
+    margin-top: 15px;
+    padding: 13px;
+    background: #fff7e7;
+    color: #806326;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.order-card {
+    margin-bottom: 18px;
+}
+
+.order-header,
+.order-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.order-header h3 {
+    color: #244c3c;
+}
+
+.order-header small,
+.order-body small {
+    display: block;
+    color: #89928b;
+    margin-bottom: 6px;
+}
+
+.order-status {
+    padding: 7px 12px;
+    background: #fff2d9;
+    color: #8a6828;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.order-body {
+    margin: 20px 0;
+    padding: 17px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.order-body > div {
+    flex: 1;
+}
+
+.order-detail-layout {
+    grid-template-columns: 1fr 1fr;
+}
+
+.add-cart-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: end;
+    margin-top: 20px;
+}
+
+.add-cart-form label {
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.add-cart-form input {
+    width: 90px;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+.catalog-filter {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.catalog-filter input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #dfe5df;
+    border-radius: 7px;
+}
+
+.catalog-filter select {
+    min-width: 190px;
+    padding: 12px;
+    border: 1px solid #dfe5df;
+    border-radius: 7px;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 800px) {
+    .cart-layout,
+    .checkout-layout,
+    .order-detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: static;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-item-total {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 550px) {
+    .cart-image,
+    .cart-placeholder {
+        width: 85px;
+        height: 85px;
+    }
+
+    .cart-item {
+        gap: 12px;
+        padding: 13px;
+    }
+
+    .order-header,
+    .order-body {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .catalog-filter {
+        flex-direction: column;
+    }
+
+    .catalog-filter select {
+        min-width: 0;
+    }
+
+    .form-actions {
+        flex-wrap: wrap;
+    }
+}

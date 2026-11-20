@@ -1,32 +1,60 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard Pengguna - Dapur.Go</title>
-</head>
-<body>
+@extends('layouts.app')
 
-    <h1>Selamat Datang di Dapur.Go</h1>
+@section('title', 'Dashboard Pengguna - Dapur.Go')
 
-    <h3>Halo, {{ auth()->user()->name }}!</h3>
+@section('content')
 
-    <p>Selamat datang di layanan pemesanan catering kami.</p>
+<section class="section">
 
-    <hr>
+    <div class="container">
 
-    <h3>Menu Pengguna</h3>
+        <div class="section-heading">
+            <p class="eyebrow">CUSTOMER DASHBOARD</p>
 
-    <ul>
-        <li>Lihat Menu Catering</li>
-        <li>Keranjang Belanja</li>
-        <li>Pemesanan Catering</li>
-        <li>Riwayat Pesanan</li>
-    </ul>
+            <h2>Halo, {{ auth()->user()->name }}!</h2>
 
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+            <p>
+                Selamat datang di Dapur.Go.
+                Siap memilih menu catering hari ini?
+            </p>
+        </div>
 
-</body>
-</html>
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <h3>🍱 Katalog Menu</h3>
+                <p>Jelajahi pilihan menu catering.</p>
+
+                <a href="{{ route('catalog.index') }}"
+                   class="btn btn-primary">
+                    Lihat Menu
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <h3>🛒 Keranjang</h3>
+                <p>Periksa pilihan makanan Anda.</p>
+
+                <a href="{{ route('user.cart.index') }}"
+                   class="btn btn-primary">
+                    Buka Keranjang
+                </a>
+            </div>
+
+            <div class="feature-card">
+                <h3>📦 Riwayat Pesanan</h3>
+                <p>Pantau pesanan catering Anda.</p>
+
+                <a href="{{ route('user.orders.index') }}"
+                   class="btn btn-primary">
+                    Lihat Pesanan
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@endsection

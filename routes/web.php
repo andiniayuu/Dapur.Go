@@ -9,6 +9,10 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MenuController;
 
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\OrderController;
+
 // Homepage
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -74,4 +78,31 @@ Route::prefix('user')
         Route::get('/dashboard', function () {
             return view('user.dashboard');
         })->name('dashboard');
+
+        // Keranjang
+        Route::get('/cart', [CartController::class, 'index'])
+            ->name('cart.index');
+
+        Route::post('/cart/items/{menu}', [CartController::class, 'add'])
+            ->name('cart.add');
+
+        Route::patch('/cart/items/{menu}', [CartController::class, 'update'])
+            ->name('cart.update');
+
+        Route::delete('/cart/items/{menu}', [CartController::class, 'remove'])
+            ->name('cart.remove');
+
+        // Checkout
+        Route::get('/checkout', [CheckoutController::class, 'create'])
+            ->name('checkout.create');
+
+        Route::post('/checkout', [CheckoutController::class, 'store'])
+            ->name('checkout.store');
+
+        // Riwayat pesanan
+        Route::get('/orders', [OrderController::class, 'index'])
+            ->name('orders.index');
+
+        Route::get('/orders/{order}', [OrderController::class, 'show'])
+            ->name('orders.show');
     });

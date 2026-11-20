@@ -45,18 +45,49 @@
                     <span>●</span> Tersedia
                 </p>
 
-                @guest
-                    <a href="{{ route('login') }}" class="btn btn-primary">
-                        Login untuk Memesan
-                    </a>
+                @auth
+
+                @if (auth()->user()->role === 'user')
+                        
+                    <form
+                        action="{{ route('user.cart.add', $menu) }}"
+                        method="POST"
+                        class="add-cart-form">
+                        
+                        @csrf
+                        
+                        <label for="quantity">Jumlah Porsi</label>
+                        
+                        <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            value="1"
+                            min="1"
+                            max="100"
+                            required>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            + Tambah ke Keranjang
+                        </button>
+                    
+                    </form>
+                
                 @else
-                    @if (auth()->user()->role === 'user')
-                        <a href="{{ route('user.dashboard') }}"
-                           class="btn btn-primary">
-                            Kembali ke Dashboard
-                        </a>
-                    @endif
-                @endguest
+                
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
+                        Kembali ke Dashboard Admin
+                    </a>
+                
+                @endif
+                
+            @else
+                
+                <a href="{{ route('login') }}" class="btn btn-primary">
+                    Login untuk Memesan
+                </a>
+            
+            @endauth
 
             </div>
 

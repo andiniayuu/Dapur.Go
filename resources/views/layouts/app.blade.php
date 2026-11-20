@@ -30,25 +30,42 @@
             <div class="nav-actions">
 
                 @auth
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline">
-                        Dashboard
-                    </a>
 
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">
-                            Logout
-                        </button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="login-link">
-                        Masuk
+                @if (auth()->user()->role === 'user')
+                        
+                    <a href="{{ route('user.cart.index') }}" class="login-link">
+                        🛒 Keranjang
                     </a>
-
-                    <a href="{{ route('register') }}" class="btn btn-primary">
-                        Daftar
+                
+                    <a href="{{ route('user.orders.index') }}" class="login-link">
+                        Pesanan
                     </a>
-                @endauth
+                
+                @endif
+                
+                <a href="{{ route('dashboard') }}" class="btn btn-outline">
+                    Dashboard
+                </a>
+            
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                
+                    <button type="submit" class="btn btn-primary">
+                        Logout
+                    </button>
+                </form>
+            
+            @else
+            
+                <a href="{{ route('login') }}" class="login-link">
+                    Masuk
+                </a>
+            
+                <a href="{{ route('register') }}" class="btn btn-primary">
+                    Daftar
+                </a>
+            
+            @endauth
 
             </div>
         </div>
