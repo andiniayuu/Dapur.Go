@@ -20,11 +20,11 @@
                 <span>Dapur<span class="brand-dot">.</span>Go</span>
             </a>
 
-            <nav class="nav-links">
+           <nav class="nav-links">
                 <a href="{{ route('home') }}">Beranda</a>
-                <a href="#kategori">Kategori</a>
-                <a href="#menu">Menu</a>
-                <a href="#tentang">Tentang Kami</a>
+                <a href="{{ route('home') }}#kategori">Kategori</a>
+                <a href="{{ route('catalog.index') }}">Menu</a>
+                <a href="{{ route('home') }}#tentang">Tentang Kami</a>
             </nav>
 
             <div class="nav-actions">

@@ -1,12 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CatalogController;
 
-// Halaman awal
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MenuController;
+
+// Homepage
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+// Katalog menu publik
+Route::get('/menu', [CatalogController::class, 'index'])
+    ->name('catalog.index');
+
+Route::get('/menu/{menu:slug}', [CatalogController::class, 'show'])
+    ->name('catalog.show');
 
 // Login dan registrasi
 Route::middleware('guest')->group(function () {
@@ -27,8 +39,8 @@ Route::middleware('guest')->group(function () {
 // Halaman yang memerlukan login
 Route::middleware('auth')->group(function () {
 
-    // Pengarah dashboard berdasarkan role
     Route::get('/dashboard', function () {
+
         if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.dashboard');
         }
@@ -36,29 +48,30 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('user.dashboard');
     })->name('dashboard');
 
-    // Logout
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
-
-    // Khusus Admin
-    Route::prefix('admin')
-        ->name('admin.')
-        ->middleware('role:admin')
-        ->group(function () {
-
-            Route::get('/dashboard', function () {
-                return view('admin.dashboard');
-            })->name('dashboard');
-        });
-
-    // Khusus Pengguna
-    Route::prefix('user')
-        ->name('user.')
-        ->middleware('role:user')
-        ->group(function () {
-
-            Route::get('/dashboard', function () {
-                return view('user.dashboard');
-            })->name('dashboard');
-        });
 });
+
+// Halaman khusus Admin
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'role:admin'])
+    ->group(function () {
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::resource('menus', MenuController::class)
+            ->except(['show']);
+    });
+
+// Halaman khusus Pengguna
+Route::prefix('user')
+    ->name('user.')
+    ->middleware(['auth', 'role:user'])
+    ->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('user.dashboard');
+        })->name('dashboard');
+    });

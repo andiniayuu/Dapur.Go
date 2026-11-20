@@ -1,33 +1,57 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard Admin - Dapur.Go</title>
-</head>
-<body>
+@extends('layouts.admin')
 
-    <h1>Dashboard Admin</h1>
+@section('title', 'Dashboard Admin - Dapur.Go')
 
-    <h3>Selamat datang, {{ auth()->user()->name }}!</h3>
+@section('content')
 
-    <p>Anda login sebagai Administrator.</p>
+    <div class="page-heading">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Selamat datang di pengelolaan Dapur.Go.</p>
+        </div>
+    </div>
 
-    <hr>
+    <div class="stats-grid">
 
-    <h3>Menu Pengelolaan</h3>
+        <div class="stat-card">
+            <span>Total Menu</span>
+            <h2>{{ $totalMenus }}</h2>
+            <p>Menu catering terdaftar</p>
+        </div>
 
-    <ul>
-        <li>Kelola Menu Catering</li>
-        <li>Kelola Kategori</li>
-        <li>Kelola Pesanan</li>
-        <li>Konfirmasi Pembayaran</li>
-        <li>Laporan Transaksi</li>
-    </ul>
+        <div class="stat-card">
+            <span>Total Kategori</span>
+            <h2>{{ $totalCategories }}</h2>
+            <p>Kategori catering</p>
+        </div>
 
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
+        <div class="stat-card">
+            <span>Total Pesanan</span>
+            <h2>{{ $totalOrders }}</h2>
+            <p>Seluruh pesanan pelanggan</p>
+        </div>
 
-</body>
-</html>
+        <div class="stat-card">
+            <span>Pesanan Menunggu</span>
+            <h2>{{ $pendingOrders }}</h2>
+            <p>Perlu diproses</p>
+        </div>
+
+    </div>
+
+    <div class="admin-panel">
+        <div>
+            <h3>Pengelolaan Menu Catering</h3>
+            <p>
+                Tambahkan produk, ubah informasi makanan,
+                harga, kategori, dan ketersediaan menu.
+            </p>
+        </div>
+
+        <a href="{{ route('admin.menus.index') }}"
+           class="btn btn-primary">
+            Kelola Menu
+        </a>
+    </div>
+
+@endsection
