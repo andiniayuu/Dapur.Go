@@ -32,7 +32,7 @@
                 @auth
 
                 @if (auth()->user()->role === 'user')
-                        
+
                     <a href="{{ route('user.cart.index') }}" class="login-link">
                         🛒 Keranjang
                     </a>
@@ -90,6 +90,7 @@
 
             <div>
                 <p>© {{ date('Y') }} Dapur.Go</p>
+                <p>AndiniAyuu</p>
                 <p>Fresh Food, Happy Moments.</p>
             </div>
 
