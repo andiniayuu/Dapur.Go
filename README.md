@@ -68,7 +68,6 @@ Akses halaman dibatasi menggunakan autentikasi Laravel dan middleware berdasarka
 | phpMyAdmin | Antarmuka pengelolaan database MySQL |
 | Blade | Template halaman aplikasi |
 | HTML, CSS, JavaScript | Antarmuka pengguna |
-| Chart.js | Grafik laporan transaksi |
 | Laragon | Lingkungan pengembangan lokal Windows |
 | Git dan GitHub | Version control dan penyimpanan source code |
 
