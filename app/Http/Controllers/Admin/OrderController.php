@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use App\Notifications\OrderUpdateNotification;
 
 class OrderController extends Controller
 {
@@ -97,6 +98,14 @@ class OrderController extends Controller
             $lockedOrder->update([
                 'status' => 'processing',
             ]);
+
+            // Kirim notifikasi ke pengguna
+            $order->user->notify(new OrderUpdateNotification(
+                'Pembayaran Berhasil',
+                'Pembayaran pesanan ' . $order->order_code
+                    . ' telah dikonfirmasi. Pesanan sedang diproses.',
+                route('user.orders.show', $order)
+            ));
         });
 
         return redirect()
@@ -141,6 +150,14 @@ class OrderController extends Controller
             $lockedOrder->update([
                 'status' => 'pending_payment',
             ]);
+
+            // Kirim notifikasi ke pengguna bahwa pembayaran ditolak
+            $order->user->notify(new OrderUpdateNotification(
+                'Pembayaran Ditolak',
+                'Pembayaran pesanan ' . $order->order_code
+                    . ' ditolak. Silakan periksa alasan penolakan dan unggah ulang bukti pembayaran.',
+                route('user.orders.show', $order)
+            ));
         });
 
         return redirect()
@@ -206,6 +223,15 @@ class OrderController extends Controller
         $order->update([
             'status' => $newStatus,
         ]);
+
+        // Kirim notifikasi ke pengguna tentang perubahan status pesanan
+        $order->user->notify(new OrderUpdateNotification(
+            'Status Pesanan Diperbarui',
+            'Status pesanan ' . $order->order_code
+                . ' sekarang: '
+                . ucwords(str_replace('_', ' ', $newStatus)),
+            route('user.orders.show', $order)
+        ));
 
         return redirect()
             ->route('admin.orders.show', $order)

@@ -51,6 +51,19 @@
                 </a>
             </div>
 
+            <div class="feature-card">
+
+                <h3>👤 Profil Saya</h3>
+                        
+                <p>Perbarui informasi akun dan password Anda.</p>
+                        
+                <a href="{{ route('user.profile.edit') }}"
+                   class="btn btn-primary">
+                    Kelola Profil
+                </a>
+            
+            </div>
+
         </div>
 
     </div>

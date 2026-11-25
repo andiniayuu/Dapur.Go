@@ -37,6 +37,11 @@
             <span>▤</span> Kelola Pesanan
         </a>
 
+        <a href="{{ route('admin.reports.index') }}"
+           class="sidebar-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+            <span>▥</span> Laporan Transaksi
+        </a>
+
         <div class="sidebar-link disabled">
             <span>▥</span> Laporan
         </div>
@@ -64,6 +69,22 @@
                 <strong>{{ auth()->user()->name }}</strong>
             </div>
         </header>
+
+        <header class="admin-topbar">
+        <a href="{{ route('notifications.index') }}" class="notification-link">
+            🔔 Notifikasi
+        
+            @if (auth()->user()->unreadNotifications()->count() > 0)
+                ({{ auth()->user()->unreadNotifications()->count() }})
+            @endif
+        </a>
+
+    <div>
+        <span class="topbar-caption">Administrator</span>
+        <strong>{{ auth()->user()->name }}</strong>
+    </div>
+
+</header>
 
         <section class="admin-content">
             @yield('content')

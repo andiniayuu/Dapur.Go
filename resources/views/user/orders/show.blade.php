@@ -40,6 +40,96 @@
             <p>{{ $order->order_code }}</p>
         </div>
 
+        @php
+
+           $trackingSteps = [
+               [
+                   'status' => 'pending_payment',
+                   'label' => 'Menunggu Pembayaran',
+                   'description' => 'Selesaikan pembayaran pesanan.',
+               ],
+               [
+                   'status' => 'processing',
+                   'label' => 'Pesanan Diproses',
+                   'description' => 'Tim Dapur.Go sedang menyiapkan pesanan.',
+               ],
+               [
+                   'status' => 'ready',
+                   'label' => 'Pesanan Siap',
+                   'description' => 'Pesanan telah selesai disiapkan.',
+               ],
+           ];
+
+           if ($order->delivery_type === 'delivery') {
+
+               $trackingSteps[] = [
+                   'status' => 'delivering',
+                   'label' => 'Dalam Pengiriman',
+                   'description' => 'Pesanan sedang diantar.',
+               ];
+
+           }
+       
+           $trackingSteps[] = [
+               'status' => 'completed',
+               'label' => 'Pesanan Selesai',
+               'description' => 'Terima kasih telah memesan di Dapur.Go.',
+           ];
+       
+           $currentIndex = collect($trackingSteps)
+               ->search(fn ($step) => $step['status'] === $order->status);
+       
+            @endphp
+       
+           <div class="tracking-card">
+       
+           <h3>Perjalanan Pesanan</h3>
+       
+           @if ($currentIndex === false)
+       
+               <div class="payment-notice">
+                   Status pesanan belum dapat ditentukan.
+                   Silakan hubungi Admin.
+               </div>
+           
+           @else
+           
+               <div class="tracking-list">
+
+                   @foreach ($trackingSteps as $index => $step)
+
+                       <div class="tracking-step
+                           {{ $index < $currentIndex ? 'done' : '' }}
+                           {{ $index === $currentIndex ? 'current' : '' }}">
+
+                           <div class="tracking-marker">
+
+                               @if ($index < $currentIndex)
+                                   ✓
+                               @else
+                                   {{ $index + 1 }}
+                               @endif
+
+                           </div>
+                       
+                           <div class="tracking-content">
+
+                               <strong>{{ $step['label'] }}</strong>
+
+                               <p>{{ $step['description'] }}</p>
+
+                           </div>
+                       
+                       </div>
+                   
+                   @endforeach
+                   
+               </div>
+           
+           @endif
+           
+        </div>
+
         <div class="order-detail-layout">
 
             <!-- Informasi Pesanan -->

@@ -40,6 +40,10 @@
                     <a href="{{ route('user.orders.index') }}" class="login-link">
                         Pesanan
                     </a>
+
+                    <a href="{{ route('user.profile.edit') }}" class="login-link">
+                        Profil
+                    </a>
                 
                 @endif
                 
@@ -67,6 +71,16 @@
             
             @endauth
 
+            <a href="{{ route('notifications.index') }}" class="login-link">
+                🔔 Notifikasi
+                        
+                @if (auth()->user()->unreadNotifications()->count() > 0)
+                    <span class="notification-count">
+                        {{ auth()->user()->unreadNotifications()->count() }}
+                    </span>
+                @endif
+            </a>
+
             </div>
         </div>
     </header>
@@ -90,7 +104,6 @@
 
             <div>
                 <p>© {{ date('Y') }} Dapur.Go</p>
-                <p>AndiniAyuu</p>
                 <p>Fresh Food, Happy Moments.</p>
             </div>
 

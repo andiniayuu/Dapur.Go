@@ -16,6 +16,11 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\NotificationController;
+
+use App\Http\Controllers\User\ProfileController;
+
 // Homepage
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -57,6 +62,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
+
+    // Notifikasi
+    Route::get('/notifications', [NotificationController::class, 'index'])
+        ->name('notifications.index');
+
+    Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])
+        ->name('notifications.read-all');
+
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'read'])
+        ->name('notifications.read');
 });
 
 // Halaman khusus Admin
@@ -100,6 +115,10 @@ Route::prefix('admin')
             '/orders/{order}/status',
             [AdminOrderController::class, 'updateStatus']
         )->name('orders.update-status');
+
+        // Laporan
+        Route::get('/reports', [ReportController::class, 'index'])
+            ->name('reports.index');
     });
 
 // Halaman khusus Pengguna
@@ -144,4 +163,11 @@ Route::prefix('user')
             '/orders/{order}/payment',
             [PaymentController::class, 'upload']
         )->name('payments.upload');
+
+        // Profil pengguna
+        Route::get('/profile', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
+
+        Route::put('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
     });

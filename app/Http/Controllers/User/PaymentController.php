@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Notifications\OrderUpdateNotification;
 
 class PaymentController extends Controller
 {
@@ -82,5 +84,18 @@ class PaymentController extends Controller
             'success',
             'Bukti pembayaran berhasil dikirim. Menunggu verifikasi Admin.'
         );
+
+        // Memberi notifikasi kepada seluruh akun Admin
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+
+            $admin->notify(new OrderUpdateNotification(
+                'Bukti Pembayaran Baru',
+                'Pengguna telah mengirim bukti pembayaran untuk pesanan '
+                    . $order->order_code,
+                route('admin.orders.show', $order)
+            ));
+        }
     }
 }

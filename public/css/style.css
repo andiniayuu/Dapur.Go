@@ -908,3 +908,238 @@ a {
         font-size: 21px;
     }
 }
+/* Timeline tracking pesanan */
+.tracking-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.tracking-card h3 {
+    color: #244c3c;
+    margin-bottom: 25px;
+}
+
+.tracking-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.tracking-step {
+    display: flex;
+    gap: 16px;
+    min-height: 80px;
+    position: relative;
+}
+
+.tracking-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 34px;
+    width: 2px;
+    height: 46px;
+    background: #dfe7df;
+}
+
+.tracking-marker {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9eee7;
+    color: #7b877c;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.tracking-step.done .tracking-marker,
+.tracking-step.current .tracking-marker {
+    background: #244c3c;
+    color: white;
+}
+
+.tracking-content strong {
+    color: #405346;
+}
+
+.tracking-step.current .tracking-content strong {
+    color: #244c3c;
+}
+
+.tracking-content p {
+    font-size: 13px;
+    color: #869087;
+    margin-top: 4px;
+}
+/* Halaman profil */
+.profile-card {
+    background: white;
+    max-width: 650px;
+    margin: auto;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px #00000008;
+}
+
+.profile-card h3 {
+    color: #244c3c;
+    margin-bottom: 7px;
+}
+
+.profile-card > p {
+    color: #879087;
+    margin-bottom: 10px;
+}
+
+.profile-avatar {
+    width: 75px;
+    height: 75px;
+    background: #244c3c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.profile-role {
+    display: inline-block;
+    background: #e7f0e9;
+    color: #315c42;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.profile-card hr {
+    border: 0;
+    border-top: 1px solid #edf0ec;
+    margin: 25px 0;
+}
+
+.profile-password-title {
+    margin-bottom: 5px;
+}
+
+.profile-card form {
+    margin-top: 20px;
+}
+
+/* Notifikasi */
+.notification-page {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notification-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border: 1px solid #edf0ec;
+}
+
+.notification-item.is-unread {
+    background: #f0f6f0;
+    border-color: #cfdfd1;
+}
+
+.notification-icon {
+    width: 42px;
+    height: 42px;
+    background: #e6eee7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notification-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-info h3 {
+    color: #244c3c;
+    font-size: 15px;
+}
+
+.notification-info p {
+    font-size: 13px;
+    color: #78837c;
+    margin: 7px 0;
+}
+
+.notification-info small {
+    color: #9aa29b;
+    font-size: 11px;
+}
+
+.notification-info form {
+    margin-top: 8px;
+}
+
+.notification-link {
+    background: transparent;
+    border: none;
+    color: #315c42;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.notification-count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #c84f45;
+    color: white;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+.unread-indicator {
+    width: 9px;
+    height: 9px;
+    background: #315c42;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+/* Tampilan HP */
+@media (max-width: 550px) {
+    .profile-card {
+        padding: 22px;
+    }
+
+    .notification-item {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .notification-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
