@@ -32,13 +32,10 @@
             <span>🍱</span> Kelola Menu
         </a>
 
-        <div class="sidebar-link disabled">
+        <a href="{{ route('admin.orders.index') }}"
+           class="sidebar-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
             <span>▤</span> Kelola Pesanan
-        </div>
-
-        <div class="sidebar-link disabled">
-            <span>💳</span> Pembayaran
-        </div>
+        </a>
 
         <div class="sidebar-link disabled">
             <span>▥</span> Laporan

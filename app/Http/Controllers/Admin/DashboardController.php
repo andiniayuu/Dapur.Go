@@ -22,11 +22,16 @@ class DashboardController extends Controller
             'pending_payment'
         )->count();
 
+        $waitingVerification = Order::whereHas('payment', function ($query) {
+            $query->where('status', 'waiting_verification');
+        })->count();
+
         return view('admin.dashboard', compact(
             'totalMenus',
             'totalCategories',
             'totalOrders',
-            'pendingOrders'
+            'pendingOrders',
+            'waitingVerification'
         ));
     }
 }

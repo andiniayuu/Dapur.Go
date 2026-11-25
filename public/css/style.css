@@ -729,3 +729,182 @@ a {
         flex-wrap: wrap;
     }
 }
+
+/* Informasi rekening */
+.bank-information {
+    background: #f5f7f3;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.bank-information h3 {
+    color: #244c3c;
+    margin-bottom: 15px;
+}
+
+.bank-detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid #e1e8df;
+    font-size: 14px;
+}
+
+.bank-detail span {
+    color: #78837c;
+}
+
+.bank-detail strong {
+    text-align: right;
+    color: #244c3c;
+}
+
+.bank-amount {
+    padding-top: 18px;
+}
+
+.bank-amount span {
+    color: #78837c;
+    font-size: 13px;
+}
+
+.bank-amount h2 {
+    color: #244c3c;
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.payment-card {
+    grid-column: 1 / -1;
+}
+
+/* Dashboard pesanan Admin */
+.order-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.order-admin-grid .admin-panel {
+    margin-top: 0;
+    min-width: 0;
+}
+
+.admin-panel h3 {
+    color: #244c3c;
+    margin-bottom: 18px;
+}
+
+.admin-detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf0ec;
+    font-size: 13px;
+}
+
+.admin-detail-row span {
+    color: #7a857d;
+}
+
+.admin-detail-row strong {
+    color: #35473b;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.admin-detail-row small {
+    display: block;
+    color: #89928b;
+    margin-top: 4px;
+}
+
+.admin-total {
+    font-size: 15px;
+    color: #244c3c;
+}
+
+.admin-separator {
+    border: 0;
+    border-top: 1px solid #edf0ec;
+    margin: 15px 0;
+}
+
+.proof-box {
+    background: #f5f7f3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 18px;
+}
+
+.proof-box p {
+    margin-bottom: 12px;
+    color: #526056;
+}
+
+.verification-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.verification-actions form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.verification-actions label,
+.status-form label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #394a3e;
+}
+
+.verification-actions textarea,
+.status-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dfe5df;
+    border-radius: 7px;
+    font-family: inherit;
+}
+
+.status-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 850px) {
+    .order-admin-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-card {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .bank-detail,
+    .admin-detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bank-detail strong,
+    .admin-detail-row strong {
+        text-align: left;
+    }
+
+    .bank-amount h2 {
+        font-size: 21px;
+    }
+}

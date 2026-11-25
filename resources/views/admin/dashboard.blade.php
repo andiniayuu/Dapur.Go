@@ -37,6 +37,12 @@
             <p>Perlu diproses</p>
         </div>
 
+        <div class="stat-card">
+            <span>Menunggu Verifikasi</span>
+            <h2>{{ $waitingVerification }}</h2>
+            <p>Bukti transfer pelanggan</p>
+        </div>
+
     </div>
 
     <div class="admin-panel">

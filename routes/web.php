@@ -13,6 +13,9 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\OrderController;
 
+use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+
 // Homepage
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -67,6 +70,36 @@ Route::prefix('admin')
 
         Route::resource('menus', MenuController::class)
             ->except(['show']);
+
+        // Manajemen pesanan
+        Route::get('/orders', [AdminOrderController::class, 'index'])
+            ->name('orders.index');
+
+        Route::get('/orders/{order}', [AdminOrderController::class, 'show'])
+            ->name('orders.show');
+
+        // Melihat bukti pembayaran
+        Route::get(
+            '/orders/{order}/payment-proof',
+            [AdminOrderController::class, 'paymentProof']
+        )->name('orders.payment-proof');
+
+        // Konfirmasi atau penolakan pembayaran
+        Route::patch(
+            '/orders/{order}/approve-payment',
+            [AdminOrderController::class, 'approvePayment']
+        )->name('orders.approve-payment');
+
+        Route::patch(
+            '/orders/{order}/reject-payment',
+            [AdminOrderController::class, 'rejectPayment']
+        )->name('orders.reject-payment');
+
+        // Memperbarui status pesanan
+        Route::patch(
+            '/orders/{order}/status',
+            [AdminOrderController::class, 'updateStatus']
+        )->name('orders.update-status');
     });
 
 // Halaman khusus Pengguna
@@ -105,4 +138,10 @@ Route::prefix('user')
 
         Route::get('/orders/{order}', [OrderController::class, 'show'])
             ->name('orders.show');
+
+        // Upload bukti pembayaran
+        Route::post(
+            '/orders/{order}/payment',
+            [PaymentController::class, 'upload']
+        )->name('payments.upload');
     });
